@@ -24,6 +24,17 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import Link from "next/link"
+import MetaIcon from "../icon/Meta"
+import MistralIcon from "../icon/Mistral"
+import { Slider } from "../ui/slider"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Info } from "lucide-react"
+
 
 
 const formSchema = z.object({
@@ -76,10 +87,9 @@ const UserInput = () => {
                                 name="model"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Username</FormLabel>
                                         <FormControl>
                                             <FormItem>
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel>Model</FormLabel>
                                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                     <FormControl>
                                                         <SelectTrigger>
@@ -87,17 +97,74 @@ const UserInput = () => {
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="llama3-8b-8192">LLaMA3 8b</SelectItem>
-                                                        <SelectItem value="llama3-70b-8192">LLaMA3 70b</SelectItem>
-                                                        <SelectItem value="mixtral-8x7b-32768">Mixtral 8x7b</SelectItem>
+                                                        <SelectItem value="llama3-8b-8192">
+                                                            <div className="flex items-start gap-3 text-muted-foreground">
+                                                                <MetaIcon className="size-5" />
+                                                                <div>
+                                                                    <p>
+                                                                        <span className="text-foreground font-medium mr-2">
+                                                                            Llama 3
+                                                                        </span>
+                                                                        8B
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
+                                                        <SelectItem value="mixtral-8x7b-32768">
+                                                            <div className="flex items-start gap-3 text-muted-foreground">
+                                                                <MistralIcon className="size-5" />
+                                                                <div>
+                                                                    <p>
+                                                                        <span className="text-foreground font-medium mr-2">
+                                                                            Mixtral
+                                                                        </span>
+                                                                        8x7b
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
+                                                        <SelectItem value="llama3-70b-8192">
+                                                            <div className="flex items-start gap-3 text-muted-foreground">
+                                                                <MetaIcon className="size-5" />
+                                                                <div>
+                                                                    <p>
+                                                                        <span className="text-foreground font-medium mr-2">
+                                                                            Llama 3
+                                                                        </span>
+                                                                        70B
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
                                                     </SelectContent>
                                                 </Select>
-                                                <FormDescription>
-                                                    You can manage email addresses in your{" "}
-                                                    <Link href="/examples/forms">email settings</Link>.
-                                                </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                        </div>
+                        <div className="grid gap-3">
+                            <FormField
+                                control={form.control}
+                                name="temperature"
+                                render={({ field: { value, onChange } }) => (
+                                    <FormItem>
+                                        <FormLabel className="flex items-center justify-between pb-2"><span className="flex items-center justify-center">Creativity
+                                            <Tooltip>
+                                                <TooltipTrigger><Info className="w-4 h-4 ml-1 cursor-pointer" /></TooltipTrigger>
+                                                <TooltipContent sideOffset={25} collisionPadding={25} className="max-w-sm">
+                                                    <p>A higher setting produces more creative and surprising bios, a lower setting sticks to more predictable and conventional styles.</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </span>
+                                            <span>{value}</span>
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Slider defaultValue={[0.5]} min={0} max={2} step={0.1} onValueChange={(val) => onChange(val[0])} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

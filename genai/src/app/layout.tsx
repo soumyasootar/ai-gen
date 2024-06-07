@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import GridPattern from "@/components/magicui/grid-pattern";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(GeistSans.variable,"font-sans")}>
+      <body className={cn(GeistSans.variable, "font-sans")}>
         <GridPattern width={60} height={60} zIndex={-100} />
-        {children}
-        </body>
+        <TooltipProvider>
+          {children}
+        </TooltipProvider>
+      </body>
     </html>
   );
 }
