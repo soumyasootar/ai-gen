@@ -34,6 +34,8 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Info } from "lucide-react"
+import { Textarea } from "../ui/textarea"
+import { Switch } from "../ui/switch"
 
 
 
@@ -172,7 +174,101 @@ const UserInput = () => {
                             />
                         </div>
                     </fieldset>
-                    <Button type="submit">Submit</Button>
+                    <fieldset className="grid gap-6 rounded-[8px] border p-4 bg-background/10 backdrop-blur-sm">
+                        <legend className="-ml-1 px-1 text-sm font-medium">Prompt</legend>
+                        <div className="grid gap-3">
+                            <FormField
+                                control={form.control}
+                                name="content"
+                                render={({ field }) => (
+                                    <FormItem>
+
+                                        <FormLabel>About Yourself</FormLabel>
+                                        <FormControl>
+                                            <Textarea {...field} className="min-h-[10rem]" placeholder="Add your old bio or a brief description of yourself, your background, and what you're passionate about. This will help the model understand your tone and style." />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem>
+
+                                        <FormLabel>Type</FormLabel>
+                                        <FormControl>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select Type" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="personal">
+                                                        Personal
+                                                    </SelectItem>
+                                                    <SelectItem value="brand">
+                                                        Brand
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+
+
+                            <FormField
+                                control={form.control}
+                                name="tone"
+                                render={({ field }) => (
+                                    <FormItem>
+
+                                        <FormLabel>Tone</FormLabel>
+                                        <FormControl>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select tone" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="professional">Professional</SelectItem>
+                                                    <SelectItem value="casual">Casual</SelectItem>
+                                                    <SelectItem value="sarcastic">Sarcastic</SelectItem>
+                                                    <SelectItem value="funny">Funny</SelectItem>
+                                                    <SelectItem value="passionate">Passionate</SelectItem>
+                                                    <SelectItem value="thoughtful">Thoughtful</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="grid gap-3">
+                            <FormField
+                                control={form.control}
+                                name="emoji"
+                                render={({ field }) => (
+                                    <FormItem className="flex items-center">
+                                        <FormLabel className="text-sm mr-4">Add Emojis</FormLabel>
+                                        <Switch
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                            className="!my-0"
+                                        />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </fieldset>
+                    <Button type="submit" className="rounded">Generate</Button>
                 </form>
             </Form>
         </div>
