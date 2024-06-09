@@ -86,6 +86,8 @@ const UserInput = () => {
         Bio Tone: ${values.tone},
         Bio Type: ${values.type},
         Add Emojis: ${values.emoji}
+
+        Give me minimum 3 values with minimum 50 characters Output According to the User input , tone ,type and emojis
     `;
         console.log("userInputValues: ", userInputValues);
 
@@ -118,26 +120,13 @@ const UserInput = () => {
                                         <FormControl>
                                             <FormItem>
                                                 <FormLabel>Model</FormLabel>
-                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <Select onValueChange={field.onChange}>
                                                     <FormControl>
                                                         <SelectTrigger>
                                                             <SelectValue placeholder="Select a Model" />
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="llama3-8b-8192">
-                                                            <div className="flex items-start gap-3 text-muted-foreground">
-                                                                <MetaIcon className="size-5" />
-                                                                <div>
-                                                                    <p>
-                                                                        <span className="text-foreground font-medium mr-2">
-                                                                            Llama 3
-                                                                        </span>
-                                                                        8B
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </SelectItem>
                                                         <SelectItem value="mixtral-8x7b-32768">
                                                             <div className="flex items-start gap-3 text-muted-foreground">
                                                                 <MistralIcon className="size-5" />
@@ -151,6 +140,20 @@ const UserInput = () => {
                                                                 </div>
                                                             </div>
                                                         </SelectItem>
+                                                        <SelectItem value="llama3-8b-8192">
+                                                            <div className="flex items-start gap-3 text-muted-foreground">
+                                                                <MetaIcon className="size-5" />
+                                                                <div>
+                                                                    <p>
+                                                                        <span className="text-foreground font-medium mr-2">
+                                                                            Llama 3
+                                                                        </span>
+                                                                        8B
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
+
                                                         <SelectItem value="llama3-70b-8192">
                                                             <div className="flex items-start gap-3 text-muted-foreground">
                                                                 <MetaIcon className="size-5" />
@@ -192,7 +195,9 @@ const UserInput = () => {
                                             <span>{value}</span>
                                         </FormLabel>
                                         <FormControl>
-                                            <Slider defaultValue={[0.5]} min={0} max={2} step={0.1} onValueChange={(val) => onChange(val[0])} />
+                                            <Slider defaultValue={[1]} min={0} max={2
+
+                                            } step={0.1} onValueChange={(val) => onChange(val[0])} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
