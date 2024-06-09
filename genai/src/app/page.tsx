@@ -8,7 +8,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="relative grid grid-cols-2 gap-12 p-24">
-
       <div className="col-span-full w-full flex flex-col items-center justify-center space-y-4 mb-b text-center">
         <Link href={"https://github.com/soumyasootar/ai-gen"} target="_blank" className="">
           <AnimatedGradientText className="px-6 py-2 rounded-full">

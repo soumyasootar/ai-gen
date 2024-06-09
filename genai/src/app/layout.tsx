@@ -4,8 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import GridPattern from "@/components/magicui/grid-pattern";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { RecoilRoot } from 'recoil';
+import RecoilRootWrapper from "@/components/recoil/RecoilRootWrapper";
 
-// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AI Generator",
@@ -18,13 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(GeistSans.variable, "font-sans")}>
-        <GridPattern width={60} height={60} zIndex={-100} />
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
-      </body>
-    </html>
+    <RecoilRootWrapper>
+      <html lang="en">
+        <body className={cn(GeistSans.variable, "font-sans")}>
+          <GridPattern width={60} height={60} className="z-[-100]" />
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
+        </body>
+      </html>
+    </RecoilRootWrapper>
   );
 }
