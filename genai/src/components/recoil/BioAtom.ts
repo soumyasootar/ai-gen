@@ -1,9 +1,14 @@
 import { atom } from "recoil";
 
-export const bioAtom = atom({
-    key: "countAtom",
+interface BioState {
+    output: { name: string }[];
+    loading: boolean;
+}
+
+export const bioAtom = atom<BioState>({
+    key: "bioAtom",
     default: {
-        output: [{name: ""}],
+        output: [], // This can also be [{ name: "" }] if needed
         loading: false
     }
-})
+});

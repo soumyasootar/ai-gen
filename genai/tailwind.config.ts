@@ -20,6 +20,9 @@ const config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
+      }, screens: {
+        sm: "380px",
+        slg: "840px"
       },
       colors: {
         border: "hsl(var(--border))",

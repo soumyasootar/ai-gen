@@ -102,7 +102,7 @@ const UserInput = () => {
             setBio({ output: data.data, loading: false });
         } catch (e) {
             console.log(e);
-            setBio({ output: [{ name: "Some Error Has Occured" }], loading: false });
+            setBio({ output: [{ name: "Error", value: e.message }], loading: false });
         }
     }
     return (
@@ -120,26 +120,13 @@ const UserInput = () => {
                                         <FormControl>
                                             <FormItem>
                                                 <FormLabel>Model</FormLabel>
-                                                <Select onValueChange={field.onChange}>
+                                                <Select onValueChange={field.onChange} defaultValue={"mixtral-8x7b-32768"}>
                                                     <FormControl>
                                                         <SelectTrigger>
                                                             <SelectValue placeholder="Select a Model" />
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="mixtral-8x7b-32768">
-                                                            <div className="flex items-start gap-3 text-muted-foreground">
-                                                                <MistralIcon className="size-5" />
-                                                                <div>
-                                                                    <p>
-                                                                        <span className="text-foreground font-medium mr-2">
-                                                                            Mixtral
-                                                                        </span>
-                                                                        8x7b
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </SelectItem>
                                                         <SelectItem value="llama3-8b-8192">
                                                             <div className="flex items-start gap-3 text-muted-foreground">
                                                                 <MetaIcon className="size-5" />
@@ -153,7 +140,20 @@ const UserInput = () => {
                                                                 </div>
                                                             </div>
                                                         </SelectItem>
-
+                                                        <SelectItem value="mixtral-8x7b-32768">
+                                                            <div className="flex items-start gap-3 text-muted-foreground">
+                                                                <MistralIcon className="size-5" />
+                                                                <div>
+                                                                    <p>
+                                                                        <span className="text-foreground font-medium mr-2">
+                                                                            Mixtral
+                                                                        </span>
+                                                                        8x7b
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
+                                                        
                                                         <SelectItem value="llama3-70b-8192">
                                                             <div className="flex items-start gap-3 text-muted-foreground">
                                                                 <MetaIcon className="size-5" />
@@ -195,9 +195,7 @@ const UserInput = () => {
                                             <span>{value}</span>
                                         </FormLabel>
                                         <FormControl>
-                                            <Slider defaultValue={[1]} min={0} max={2
-
-                                            } step={0.1} onValueChange={(val) => onChange(val[0])} />
+                                            <Slider defaultValue={[0.5]} min={0} max={2} step={0.1} onValueChange={(val) => onChange(val[0])} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -252,8 +250,6 @@ const UserInput = () => {
                                     </FormItem>
                                 )}
                             />
-
-
                             <FormField
                                 control={form.control}
                                 name="tone"
