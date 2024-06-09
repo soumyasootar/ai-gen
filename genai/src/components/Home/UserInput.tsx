@@ -102,7 +102,7 @@ const UserInput = () => {
             setBio({ output: data.data, loading: false });
         } catch (e) {
             console.log(e);
-            setBio({ output: [{ name: "Error", value: e.message }], loading: false });
+            setBio({ output: [{ name: "Error in Generating Bio Please Try Again" }], loading: false });
         }
     }
     return (
@@ -222,7 +222,7 @@ const UserInput = () => {
                                 )}
                             />
                         </div>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                             <FormField
                                 control={form.control}
                                 name="type"

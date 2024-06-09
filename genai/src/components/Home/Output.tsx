@@ -16,7 +16,7 @@ const Output = () => {
       </Badge>
       {bio.loading && (
         <BorderBeam
-          size={1000}
+          size={800}
           borderWidth={2}
           duration={10}
           className="z-10"
