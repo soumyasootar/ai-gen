@@ -34,6 +34,19 @@ const Output = () => {
         <>
           <ul className="flex flex-col items-start justify-start space-y-8 sm:space-y-12 p-8 py-12 xs:p-8 xs:py-12 sm:p-12 lg:p-16">
             {bio.output?.map((data: any, index: any) => {
+              console.log("data: ", data);
+
+              if (data.name === "Error in Generating Bio Please Try Again with Different Models,Changing Prompt,Temperature and Tone !") {
+                return (
+                  <li
+                    key={index}
+                    className="w-full text-sm xs:text-base border border-primary/20 rounded-md p-4 relative bg-red-100 rounded-br-none"
+                  >
+                    <BorderBeam size={100} borderWidth={2} duration={1} className="z-10" />
+                    {data.name}
+                  </li>
+                )
+              }
               return (
                 <li
                   key={index}

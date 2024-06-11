@@ -102,7 +102,7 @@ const UserInput = () => {
             setBio({ output: data.data, loading: false });
         } catch (e) {
             console.log(e);
-            setBio({ output: [{ name: "Error in Generating Bio Please Try Again" }], loading: false });
+            setBio({ output: [{ name: "Error in Generating Bio Please Try Again with Different Models,Changing Prompt,Temperature and Tone !" }], loading: false });
         }
     }
     return (
@@ -213,7 +213,7 @@ const UserInput = () => {
                                     <FormItem>
 
                                         <FormLabel>About Yourself</FormLabel>
-                                        <p>Hi I am Soumya Swaroop Sootar , I am a Full Stack Web Developer , I watch anime and game sometimes and ride bike</p>
+                                        {/* <p>Hi I am Soumya Swaroop Sootar , I am a Full Stack Web Developer , I watch anime and game sometimes and ride bike</p> */}
                                         <FormControl>
                                             <Textarea {...field} className="min-h-[10rem]" placeholder="Add your old bio or a brief description of yourself, your background, and what you're passionate about. This will help the model understand your tone and style." />
                                         </FormControl>
